@@ -69,7 +69,7 @@ dependencies {
     // recyclerview
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     // picasso
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     // room
     implementation "androidx.room:room-ktx:2.3.0"
     implementation "androidx.room:room-runtime:2.3.0"
