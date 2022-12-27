@@ -3,11 +3,17 @@ package com.elhady.asteroidradar.ui.main
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.elhady.asteroidradar.R
 import com.elhady.asteroidradar.databinding.FragmentMainBinding
+import com.elhady.asteroidradar.ui.main.adapters.AsteroidAdapter
+import timber.log.Timber
 
 class MainFragment : Fragment() {
+
+    private var adapter: AsteroidAdapter? = null
+    private lateinit var binding: FragmentMainBinding
 
 
     private val viewModel: MainViewModel by lazy {
@@ -20,15 +26,36 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMainBinding.inflate(inflater)
+        binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-
         binding.viewModel = viewModel
+
+        observeAsteroid()
+        setAdapter()
+
+        viewModel.asteroid.observe(viewLifecycleOwner, Observer {
+            binding.textView.text = it.size.toString()
+        })
 
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    private fun setAdapter() {
+        adapter = AsteroidAdapter()
+
+        binding.asteroidRecycler.adapter = adapter
+        viewModel.asteroid.observe(viewLifecycleOwner, Observer {
+            adapter!!.submitList(it)
+        })
+    }
+
+    private fun observeAsteroid() {
+        viewModel.asteroid.observe(viewLifecycleOwner, Observer {
+            binding.textView.text = it.size.toString()
+        })
     }
 
 

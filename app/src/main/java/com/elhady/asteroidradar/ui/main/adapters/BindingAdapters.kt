@@ -1,9 +1,9 @@
-package com.elhady.asteroidradar
+package com.elhady.asteroidradar.ui.main.adapters
 
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.elhady.asteroidradar.model.PictureOfDay
+import com.elhady.asteroidradar.R
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("statusIcon")
@@ -43,9 +43,9 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 @BindingAdapter("imageUrl")
-fun setImageUrl(imageView: ImageView, picture: PictureOfDay?) {
+fun setImageUrl(imageView: ImageView, picture: String?) {
     if (picture != null)
-        Picasso.get().load(picture.url)
+        Picasso.get().load(picture)
             .placeholder(R.drawable.placeholder_picture_of_day)
             .error(R.drawable.ic_help_circle)
             .into(imageView)
