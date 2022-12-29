@@ -36,10 +36,6 @@ class MainFragment : Fragment() {
         observeAsteroid()
         setAdapter()
 
-        viewModel.asteroid.observe(viewLifecycleOwner, Observer {
-            binding.textView.text = it.size.toString()
-        })
-
         setHasOptionsMenu(true)
 
         return binding.root
@@ -47,7 +43,7 @@ class MainFragment : Fragment() {
 
     private fun setAdapter() {
         adapter = AsteroidAdapter(AsteroidClick{
-            findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it))
         })
 
         binding.asteroidRecycler.adapter = adapter

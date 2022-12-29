@@ -14,8 +14,6 @@ import timber.log.Timber.i
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    //    private val asteroidRepository = AsteroidRepository()
-//    private val database = AppDatabase.getInstance(application)
     private val asteroidRepository = AsteroidRepository(AppDatabase.getInstance(application))
 
 
@@ -55,7 +53,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             viewModelScope.launch {
                 asteroidRepository.getAllAsteroids(startDate, endDate, Constants.API_KEY)
 
-                d("Success ${asteroid.value!!.size.toString()}")
+                d("Success ${asteroid.value!!.size}")
 
             }
         }catch (e:Exception){
@@ -63,28 +61,4 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
 
     }
-
-//    private fun getAllAsteroid() {
-//        viewModelScope.launch {
-//            val startDate: String = Constants.getToday()
-//            val endDate: String = Constants.getSevenDaysLater()
-//            try {
-//                val asteroid = AsteroidNetwork.retrofitService.getAllAsteroids(startDate,endDate,Constants.API_KEY)
-//                val asteroidlist = parseAsteroidsJsonResult(JSONObject(asteroid))
-//                val listAsteroid = asteroidlist.asAsteroidEntities()
-//                _asteroid.value = listAsteroid
-//                d("sizeAsteroid ${asteroid}")
-//
-//            } catch (e: Exception) {
-//                i("iAsteroid${e}")
-//                Timber.e(e)
-//
-//            }
-//        }
-//    }
-
-//    fun refreshDataFromNetwork() {
-////        getPicOfDay()
-//        getAllAsteroid()
-//    }
 }
