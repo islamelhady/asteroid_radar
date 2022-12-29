@@ -5,9 +5,11 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.elhady.asteroidradar.R
 import com.elhady.asteroidradar.databinding.FragmentMainBinding
 import com.elhady.asteroidradar.ui.main.adapters.AsteroidAdapter
+import com.elhady.asteroidradar.ui.main.adapters.AsteroidClick
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -44,7 +46,9 @@ class MainFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        adapter = AsteroidAdapter()
+        adapter = AsteroidAdapter(AsteroidClick{
+            findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+        })
 
         binding.asteroidRecycler.adapter = adapter
         viewModel.asteroid.observe(viewLifecycleOwner, Observer {

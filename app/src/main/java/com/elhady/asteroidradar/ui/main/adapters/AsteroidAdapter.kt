@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.elhady.asteroidradar.model.Asteroid
 
-class AsteroidAdapter :
+class AsteroidAdapter(val callBack: AsteroidClick) :
     ListAdapter<Asteroid, AsteroidViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Asteroid>() {
@@ -23,6 +23,6 @@ class AsteroidAdapter :
     }
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(callBack, getItem(position))
     }
 }

@@ -9,11 +9,17 @@
             name="asteroid"
             type="com.elhady.asteroidradar.model.Asteroid" />
 
+        <variable
+            name="asteroidClick"
+            type="com.elhady.asteroidradar.ui.main.adapters.AsteroidClick" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> asteroidClick.onClick(asteroid)}"
+        android:padding="16dp"
         android:background="@color/app_background">
 
         <TextView
@@ -30,7 +36,7 @@
             android:id="@+id/asteroid_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{asteroid.codename}"
+            android:text="@{asteroid.closeApproachDate}"
             android:textSize="20sp"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +48,7 @@
             android:id="@+id/asteroid_status_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:statusIcon="@{asteroid.isPotentiallyHazardous}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

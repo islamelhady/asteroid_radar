@@ -9,8 +9,9 @@ import com.elhady.asteroidradar.model.Asteroid
 class AsteroidViewHolder(private val binding: AsteroidItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Asteroid) {
+    fun bind(listener: AsteroidClick, item: Asteroid) {
         binding.asteroid = item
+        binding.asteroidClick = listener
         binding.executePendingBindings()
     }
 
@@ -22,4 +23,15 @@ class AsteroidViewHolder(private val binding: AsteroidItemBinding) :
         }
     }
 
+}
+
+/**
+ * Click listener for Groups. By giving the block a name it helps a reader understand what it does.
+ */
+class AsteroidClick(val block: (asteroid: Asteroid) -> Unit) {
+    /**
+     * Called when a Asteroid is clicked
+     * @param asteroid the Asteroid Radar that was clicked
+     */
+    fun onClick(asteroid: Asteroid) = block(asteroid)
 }
