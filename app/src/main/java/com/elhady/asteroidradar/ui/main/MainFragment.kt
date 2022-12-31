@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        observeAsteroid()
+//        observeAsteroid()
         setAdapter()
 
         setHasOptionsMenu(true)

@@ -5,6 +5,7 @@ import com.elhady.asteroidradar.model.PictureOfDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -37,7 +38,10 @@ object AsteroidApi {
          *  This converter enables Retrofit to return the JSON result as a String
          */
         .addConverterFactory(ScalarsConverterFactory.create())
-        .baseUrl(Constants.BASE_URL)
+        /**  The Retrofit Moshi converter,
+         *   is an Android JSON parser that converts a JSON string into Kotlin objects.
+         */
+        .addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(Constants.BASE_URL)
         .build()
 
     /**

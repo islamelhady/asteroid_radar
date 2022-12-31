@@ -17,7 +17,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val asteroidRepository = AsteroidRepository(AppDatabase.getInstance(application))
 
 
-
     private val _picOfDay = MutableLiveData<PictureOfDay>()
     val picOfDay: LiveData<PictureOfDay>
         get() = _picOfDay
@@ -29,6 +28,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         getAsteroidRadar()
+        getPicOfDay()
     }
 
 
@@ -38,27 +38,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val picture = AsteroidApi.retrofitService.getPicOfDay(Constants.API_KEY)
                 picture.let {
                     _picOfDay.value = picture
-                    i("ipicture ${picOfDay}")
+                    i("Success: ${picture.title} Picture of Day properties retrieved")
                 }
             } catch (e: Exception) {
-                d("dpicture ${e.message}")
+                i("Failure: ${e.message}")
             }
         }
     }
 
     private fun getAsteroidRadar() {
         val startDate: String = Constants.getToday()
-            val endDate: String = Constants.getSevenDaysLater()
+        val endDate: String = Constants.getSevenDaysLater()
         try {
             viewModelScope.launch {
                 asteroidRepository.getAllAsteroids(startDate, endDate, Constants.API_KEY)
-
-                d("Success ${asteroid.value!!.size}")
-
+                i("Success ${asteroid.value!!.size}")
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             i("Erorr ${e.message}")
         }
-
     }
 }
