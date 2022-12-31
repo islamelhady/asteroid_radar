@@ -38,5 +38,7 @@ class AsteroidRepository(private val database: AppDatabase) {
 
     fun getTodayAsteroids(todayDate: String) = database.asteroidDao.getTodayAsteroids(todayDate)
 
+    fun getWeekAsteroids(startDate: String, endDate: String) = database.asteroidDao.getWeekAsteroids(startDate, endDate)
+
 
 }

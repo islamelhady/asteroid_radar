@@ -65,4 +65,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             it.asDomainModel()
         }
 
+    fun getWeekAsteroids(): LiveData<List<Asteroid>> =
+        Transformations.map(asteroidRepository.getWeekAsteroids(Constants.getToday(),Constants.getToday())){
+            it.asDomainModel()
+        }
+
 }

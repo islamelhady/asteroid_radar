@@ -63,6 +63,11 @@ class MainFragment : Fragment() {
                     adapter!!.submitList(it)
                 })
             }
+            R.id.show_week_menu -> {
+                viewModel.getWeekAsteroids().observe(viewLifecycleOwner, Observer {
+                    adapter!!.submitList(it)
+                })
+            }
         }
         return true
     }
