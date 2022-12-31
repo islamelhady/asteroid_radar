@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import com.elhady.asteroidradar.R
 import com.elhady.asteroidradar.databinding.FragmentDetailBinding
 

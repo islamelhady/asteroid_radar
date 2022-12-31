@@ -28,15 +28,21 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater)
-        binding.lifecycleOwner = this
-
-        binding.viewModel = viewModel
 
         setAdapter()
 
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            mainViewModel = viewModel
+        }
     }
 
     private fun setAdapter() {
@@ -65,6 +71,11 @@ class MainFragment : Fragment() {
             }
             R.id.show_week_menu -> {
                 viewModel.getWeekAsteroids().observe(viewLifecycleOwner, Observer {
+                    adapter!!.submitList(it)
+                })
+            }
+            R.id.show_saved_menu -> {
+                viewModel.asteroid.observe(viewLifecycleOwner, Observer {
                     adapter!!.submitList(it)
                 })
             }
