@@ -10,7 +10,6 @@ import com.elhady.asteroidradar.R
 import com.elhady.asteroidradar.databinding.FragmentMainBinding
 import com.elhady.asteroidradar.ui.main.adapters.AsteroidAdapter
 import com.elhady.asteroidradar.ui.main.adapters.AsteroidClick
-import timber.log.Timber
 
 class MainFragment : Fragment() {
 
@@ -33,7 +32,6 @@ class MainFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-//        observeAsteroid()
         setAdapter()
 
         setHasOptionsMenu(true)
@@ -52,12 +50,6 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun observeAsteroid() {
-        viewModel.asteroid.observe(viewLifecycleOwner, Observer {
-            binding.textView.text = it.size.toString()
-        })
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_overflow_menu, menu)
@@ -65,6 +57,13 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.show_today_menu -> {
+                viewModel.getTodayAsteroids().observe(viewLifecycleOwner, Observer {
+                    adapter!!.submitList(it)
+                })
+            }
+        }
         return true
     }
 

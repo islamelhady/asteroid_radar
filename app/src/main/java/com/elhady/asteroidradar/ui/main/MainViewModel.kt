@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.elhady.asteroidradar.Constants
 import com.elhady.asteroidradar.api.AsteroidApi
 import com.elhady.asteroidradar.local.AppDatabase
+import com.elhady.asteroidradar.local.asDomainModel
 import com.elhady.asteroidradar.model.Asteroid
 import com.elhady.asteroidradar.model.PictureOfDay
 import com.elhady.asteroidradar.repository.AsteroidRepository
@@ -55,7 +56,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 i("Success ${asteroid.value!!.size}")
             }
         } catch (e: Exception) {
-            i("Erorr ${e.message}")
+            i("Failure ${e.message}")
         }
     }
+
+    fun getTodayAsteroids(): LiveData<List<Asteroid>> =
+        Transformations.map(asteroidRepository.getTodayAsteroids(Constants.getToday())){
+            it.asDomainModel()
+        }
+
 }

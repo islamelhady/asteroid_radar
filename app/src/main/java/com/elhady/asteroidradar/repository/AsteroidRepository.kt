@@ -20,7 +20,6 @@ class AsteroidRepository(private val database: AppDatabase) {
         Transformations.map(database.asteroidDao.getAsteroids()) {
             it.asDomainModel()
         }
-//    suspend fun getPicOfDay(apiKey: String) = AsteroidNetwork.retrofitService.getPicOfDay(apiKey)
 
     suspend fun getAllAsteroids(startDate: String, endDate: String, apiKey: String) =
         withContext(Dispatchers.IO){
@@ -36,6 +35,8 @@ class AsteroidRepository(private val database: AppDatabase) {
                 Timber.i("error ${e.message}")
             }
         }
+
+    fun getTodayAsteroids(todayDate: String) = database.asteroidDao.getTodayAsteroids(todayDate)
 
 
 }
