@@ -19,15 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> asteroidClick.onClick(asteroid)}"
-        android:padding="16dp"
+        android:padding="@dimen/side_margin"
         android:background="@color/app_background">
 
         <TextView
             android:id="@+id/asteroid_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextTitle"
             android:text="@{asteroid.codename}"
-            android:textColor="#ffffff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="465633 (2009 JR5)" />
@@ -36,9 +36,8 @@
             android:id="@+id/asteroid_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextSubtitle"
             android:text="@{asteroid.closeApproachDate}"
-            android:textSize="20sp"
-            android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/asteroid_name"
             app:layout_constraintTop_toBottomOf="@+id/asteroid_name"

@@ -1,4 +1,4 @@
-package com.elhady.asteroidradar.ui.main
+package com.elhady.asteroidradar.ui.main.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

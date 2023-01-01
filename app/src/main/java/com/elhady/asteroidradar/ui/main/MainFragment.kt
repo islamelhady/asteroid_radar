@@ -10,6 +10,8 @@ import com.elhady.asteroidradar.R
 import com.elhady.asteroidradar.databinding.FragmentMainBinding
 import com.elhady.asteroidradar.ui.main.adapters.AsteroidAdapter
 import com.elhady.asteroidradar.ui.main.adapters.AsteroidClick
+import com.elhady.asteroidradar.ui.main.viewmodels.MainViewModel
+import com.elhady.asteroidradar.ui.main.viewmodels.MainViewModelFactory
 
 class MainFragment : Fragment() {
 
@@ -21,7 +23,7 @@ class MainFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        ViewModelProvider(this,MainViewModelFactory(activity.application)).get(MainViewModel::class.java)
+        ViewModelProvider(this, MainViewModelFactory(activity.application)).get(MainViewModel::class.java)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

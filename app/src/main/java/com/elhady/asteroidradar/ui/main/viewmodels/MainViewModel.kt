@@ -1,4 +1,4 @@
-package com.elhady.asteroidradar.ui.main
+package com.elhady.asteroidradar.ui.main.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
@@ -10,7 +10,6 @@ import com.elhady.asteroidradar.model.Asteroid
 import com.elhady.asteroidradar.model.PictureOfDay
 import com.elhady.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
-import timber.log.Timber.d
 import timber.log.Timber.i
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
