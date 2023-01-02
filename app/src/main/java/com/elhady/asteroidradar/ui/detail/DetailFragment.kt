@@ -21,7 +21,7 @@ class DetailFragment : Fragment() {
 
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
 
-        binding.asteroid = asteroid
+        binding.asteroidDetail = asteroid
 
         binding.helpButton.setOnClickListener {
             displayAstronomicalUnitExplanationDialog()
