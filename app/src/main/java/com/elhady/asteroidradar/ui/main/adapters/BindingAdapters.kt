@@ -6,7 +6,9 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elhady.asteroidradar.R
 import com.elhady.asteroidradar.model.Asteroid
+import com.elhady.asteroidradar.model.PictureOfDay
 import com.squareup.picasso.Picasso
+import retrofit2.Response.error
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -49,10 +51,23 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 @BindingAdapter("imageUrl")
-fun setImageUrl(imageView: ImageView, picture: String?) {
-    if (picture != null)
-        Picasso.get().load(picture)
+fun setImageUrl(imageView: ImageView, picture: PictureOfDay?) {
+    /**
+     *  (mediaType) The image of the day could be an image or video, we are using only the image,
+     *  to know what media type is you have to check the (mediaType) field, if this value is "image"
+     *  you are going to download and use the image, if it's video you are going to ignore it.
+     */
+    if (picture?.mediaType ==  "image") {
+        Picasso.get().load(picture.url)
             .placeholder(R.drawable.placeholder_picture_of_day)
             .error(R.drawable.ic_help_circle)
             .into(imageView)
+        imageView.contentDescription = imageView.context.getString(
+            R.string.nasa_picture_of_day_content_description_format,
+            picture.title
+        )
+    }else{
+        imageView.contentDescription = imageView.context.getString(R.string.this_is_nasa_s_picture_of_day_showing_nothing_yet)
+    }
+
 }

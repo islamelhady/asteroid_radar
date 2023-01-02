@@ -15,12 +15,12 @@
     </style>
 
 
-    <style name="TextTitle" parent="TextAppearance.MaterialComponents.Headline6">
+    <style name="TextAppearance.Title" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textColor">@color/default_text_color</item>
         <item name="android:textSize">@dimen/font_size</item>
     </style>
 
-    <style name="TextSubtitle" parent="TextTitle">
+    <style name="TextAppearance.Subtitle" parent="TextAppearance.Title">
         <item name="android:textSize">@dimen/small_font_size</item>
     </style>
 </resources>
