@@ -40,5 +40,7 @@ class AsteroidRepository(private val database: AppDatabase) {
 
     fun getWeekAsteroids(startDate: String, endDate: String) = database.asteroidDao.getWeekAsteroids(startDate, endDate)
 
+    fun deletePreviousDay(previousDay: String) = database.asteroidDao.deletePreviousDay(previousDay)
+
 
 }

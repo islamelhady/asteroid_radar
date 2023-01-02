@@ -13,7 +13,7 @@ class RefreshDataWorker(context: Context, params: WorkerParameters) :
     CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
-        val database = AppDatabase.getInstance(applicationContext)
+        val database = AppDatabase.getDatabase(applicationContext)
         val repository = AsteroidRepository(database)
 
         try {
@@ -22,6 +22,7 @@ class RefreshDataWorker(context: Context, params: WorkerParameters) :
                 Constants.getSevenDaysLater(),
                 Constants.API_KEY
             )
+            repository.deletePreviousDay(Constants.getPreviousDay())
             Timber.d("Work request for sync is run")
         } catch (e: HttpException) {
             return Result.retry()

@@ -14,7 +14,7 @@ import timber.log.Timber.i
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val asteroidRepository = AsteroidRepository(AppDatabase.getInstance(application))
+    private val asteroidRepository = AsteroidRepository(AppDatabase.getDatabase(application))
 
 
     private val _picOfDay = MutableLiveData<PictureOfDay>()
