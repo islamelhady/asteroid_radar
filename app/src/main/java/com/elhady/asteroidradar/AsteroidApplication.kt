@@ -1,9 +1,7 @@
 package com.elhady.asteroidradar
 
 import android.app.Application
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.elhady.asteroidradar.work.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +22,13 @@ class AsteroidApplication : Application() {
      * Setup WorkManager background job to 'fetch' new network data once a day (daily).
      */
     private fun setupRecurringWork() {
-        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS).build()
+        val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.UNMETERED).build()
+
+        val repeatingRequest =
+            PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS).setConstraints(
+                constraints
+            ).build()
+
         Timber.d("Periodic work request for sync is scheduled")
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshDataWorker.WORK_NAME,
@@ -33,7 +37,7 @@ class AsteroidApplication : Application() {
         )
     }
 
-    fun delayedInit(){
+    fun delayedInit() {
         applicationScope.launch {
             Timber.plant(Timber.DebugTree())
             setupRecurringWork()
