@@ -42,6 +42,7 @@
                 android:background="#55010613"
                 android:padding="@dimen/side_margin"
                 android:text="@string/image_of_the_day"
+                android:contentDescription="@string/image_of_the_day"
                 android:textStyle="bold" />
         </FrameLayout>
 

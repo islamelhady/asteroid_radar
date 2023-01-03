@@ -50,6 +50,9 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
 }
 
+/**
+ * Binding adapter used to display images from URL using Picasso
+ */
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, picture: PictureOfDay?) {
     /**
