@@ -1,7 +1,8 @@
-package com.elhady.asteroidradar
+package com.elhady.asteroidradar.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.elhady.asteroidradar.R
 
 class MainActivity : AppCompatActivity() {
 
